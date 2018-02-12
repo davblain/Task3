@@ -3,4 +3,5 @@
     <string name="type_name">Type Name</string>
     <string name="make_a_photo">Make a photo</string>
     <string name="photo">Photo</string>
+    <string name="name_err"> You should type a name</string>
 </resources>

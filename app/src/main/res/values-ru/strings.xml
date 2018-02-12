@@ -3,4 +3,5 @@
     <string name="type_name">Введите имя</string>
     <string name="make_a_photo">Сделать фото</string>
     <string name="photo">Фото</string>
+    <string name="name_err">Вы должны ввести имя</string>
 </resources>

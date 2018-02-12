@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         makePhotoButton.setOnClickListener {
-           val makePictureIntent =  Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(makePictureIntent,REQUEST_IMAGE_CAPTURE)
+            if ( !nameTextEdit.text.isEmpty()) {
+                val makePictureIntent =  Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(makePictureIntent,REQUEST_IMAGE_CAPTURE)
+            } else {
+                showErr()
+            }
         }
     }
 
@@ -26,5 +31,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(PhotoPreviewActivity.newIntent(this,extras?.get("data") as Bitmap,nameTextEdit.text.toString()))
         }
 
+    }
+    fun showErr() {
+        Toast.makeText(this,getString(R.string.name_err),Toast.LENGTH_SHORT).show()
     }
 }
