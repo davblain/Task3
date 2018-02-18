@@ -1,8 +1,6 @@
 package com.example.gemini.task3
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -33,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     private fun  makePhoto() {
         createdFile = createPhotoFile()
         if (createdFile!=null) {
@@ -56,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             return null
         }
     }
+
     private fun showErr(message:String) {
         Snackbar.make(root,message,Snackbar.LENGTH_LONG).show()
     }
