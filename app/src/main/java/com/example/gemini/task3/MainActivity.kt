@@ -1,6 +1,8 @@
 package com.example.gemini.task3
 
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -34,8 +36,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun  makePhoto() {
         createdFile = createPhotoFile()
-        if (createdFile!=null) {
-            val photoUri = FileProvider.getUriForFile(this, "com.gemini.fileprovider", createdFile)
+        if (createdFile!=null && intent.resolveActivity(applicationContext.packageManager)!=null) {
+            val photoUri = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                Uri.fromFile(createdFile)
+            } else {
+                FileProvider.getUriForFile(this, "com.gemini.fileprovider", createdFile)
+            }
             val makePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             makePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             startActivityForResult(makePictureIntent, REQUEST_IMAGE_CAPTURE)
